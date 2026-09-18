@@ -1,0 +1,43 @@
+{
+  "users": {
+    "name": "string",
+    "phone": "string",
+    "email": "string",
+    "location": {
+      "lat": "number",
+      "lng": "number"
+    }
+  },
+  "serviceProviders": {
+    "businessName": "string",
+    "category": "string",
+    "latitude": "number",
+    "longitude": "number",
+    "phone": "string",
+    "verified": "boolean"
+  },
+  "helpRequests": {
+    "userId": "string",
+    "serviceType": "string",
+    "location": {
+      "lat": "number",
+      "lng": "number"
+    },
+    "status": "string",
+    "createdAt": "timestamp",
+    "providerId": "string"
+  },
+  "ratings": {
+    "requestId": "string",
+    "userId": "string",
+    "providerId": "string",
+    "rating": "number",
+    "comment": "string"
+  },
+  "serviceLocations": {
+    "name": "string",
+    "category": "string",
+    "latitude": "number",
+    "longitude": "number"
+  }
+}

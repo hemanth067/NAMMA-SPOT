@@ -1,0 +1,124 @@
+#:import dp kivy.metrics.dp
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "NammaSpot"
+            right_action_items: [["map-marker", lambda x: app.go("map")]]
+        ScrollView:
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(16)
+                spacing: dp(12)
+                adaptive_height: True
+                MDLabel:
+                    text: "Nearby Help, Fast"
+                    font_style: "H4"
+                    adaptive_height: True
+                MDLabel:
+                    text: "Find nearby services and request help."
+                    adaptive_height: True
+                MDRaisedButton:
+                    text: "📍 FIND NEARBY SERVICES"
+                    on_release: app.go("map")
+                MDRaisedButton:
+                    text: "🆘 REQUEST HELP"
+                    on_release: app.go("help")
+                MDRaisedButton:
+                    text: "🧑‍🔧 PROVIDER DASHBOARD"
+                    on_release: app.go("provider")
+
+<MapScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Nearby Services"
+            left_action_items: [["arrow-left", lambda x: app.go("home")]]
+        ScrollView:
+            size_hint_y: None
+            height: dp(55)
+            do_scroll_y: False
+            MDBoxLayout:
+                padding: dp(6)
+                spacing: dp(6)
+                adaptive_width: True
+                MDRaisedButton:
+                    text: "All"
+                    on_release: root.choose_category("All")
+                MDRaisedButton:
+                    text: "Mechanic"
+                    on_release: root.choose_category("Mechanic")
+                MDRaisedButton:
+                    text: "Hospital"
+                    on_release: root.choose_category("Hospital")
+                MDRaisedButton:
+                    text: "Police"
+                    on_release: root.choose_category("Police")
+                MDRaisedButton:
+                    text: "Fire"
+                    on_release: root.choose_category("Fire Station")
+        FloatLayout:
+            id: map_container
+            MDLabel:
+                text: "Loading map..."
+                pos_hint: {"center_x": .5, "center_y": .5}
+                halign: "center"
+                size_hint: .8, .1
+
+<HelpScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Request Help"
+            left_action_items: [["arrow-left", lambda x: app.go("home")]]
+        ScrollView:
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(18)
+                spacing: dp(14)
+                adaptive_height: True
+                MDLabel:
+                    text: "What help do you need?"
+                    font_style: "H5"
+                    adaptive_height: True
+                MDTextField:
+                    id: service
+                    hint_text: "Service type"
+                MDTextField:
+                    hint_text: "Describe the problem"
+                MDRaisedButton:
+                    text: "SEND HELP REQUEST"
+                    on_release: root.submit_request()
+                MDLabel:
+                    id: result
+                    text: ""
+                    adaptive_height: True
+
+<ProviderScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Provider Dashboard"
+            left_action_items: [["arrow-left", lambda x: app.go("home")]]
+        ScrollView:
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(18)
+                spacing: dp(12)
+                adaptive_height: True
+                MDLabel:
+                    text: "Incoming Requests"
+                    font_style: "H5"
+                    adaptive_height: True
+                MDCard:
+                    orientation: "vertical"
+                    padding: dp(12)
+                    size_hint_y: None
+                    height: dp(130)
+                    MDLabel:
+                        text: "Example: Vehicle breakdown nearby"
+                    MDLabel:
+                        text: "Status: Waiting for provider"
+                    MDRaisedButton:
+                        text: "ACCEPT REQUEST"
