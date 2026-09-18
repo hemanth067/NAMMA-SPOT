@@ -12,6 +12,11 @@ fullscreen = 0
 # Android permissions
 android.permissions = INTERNET,ACCESS_FINE_LOCATION,ACCESS_COARSE_LOCATION
 
+# Android build settings
+android.accept_sdk_license = True
+android.api = 35
+android.minapi = 23
+
 [buildozer]
 log_level = 2
 warn_on_root = 1
